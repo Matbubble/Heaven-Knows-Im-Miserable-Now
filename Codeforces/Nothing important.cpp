@@ -1,4 +1,20 @@
 #include <iostream>
+#include <iomanip>
+#include <string>
+#include <math.h>
+#include <algorithm>
+#include <cstring>
+#include <numeric>
+#include <vector>
+#include <bitset>
+#include <map>
+#include <set>
+#include <queue>
+#include <deque>
+#include <stack>
+#include <unordered_map>
+#include <unordered_set>
+
 using namespace std;
 #define dbg(x) cerr<<#x<<": "<<x<<"\n";
 
@@ -7,8 +23,7 @@ I love DP
 */
 
 void solve(){
-    int a, b; cin>>a>>b;
-    cout<<a+b<<"\n";
+    
 }
 
 int main(){

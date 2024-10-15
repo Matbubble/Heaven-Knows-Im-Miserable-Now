@@ -1,3 +1,9 @@
 {
-    "cph.general.saveLocation": "/Users/matijim/Desktop/CPH"
+    "cph.general.saveLocation": "/Users/matijim/Desktop/CPH",
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "files.associations": {
+        "iostream": "cpp",
+        "queue": "cpp",
+        "vector": "cpp"
+    }
 }
