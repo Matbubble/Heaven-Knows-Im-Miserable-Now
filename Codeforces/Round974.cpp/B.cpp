@@ -23,19 +23,13 @@ I love DP
 */
 
 void solve(){
-    int n, k, x=0, ans=0; cin>>n>>k;
-    vector<int>v(n);
-    for(int &x:v) cin>>x;
-    for(int i=0 ; i<n ; i++){
-        if(v[i]>=k) x+=v[i];
-        if(v[i]==0){
-            if(x>0){
-                ans++;
-                x--;
-            }
-        }
+    int a, b; cin>>a>>b;
+    int now=a-b+1;
+    int x=b/2;
+    if(b&1){
+        if(now&1) x++;
     }
-    cout<<ans<<"\n";
+    cout<<(x&1?"NO\n":"YES\n");
 }
 
 int main(){
