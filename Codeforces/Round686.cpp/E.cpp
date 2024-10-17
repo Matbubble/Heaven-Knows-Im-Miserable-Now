@@ -24,7 +24,7 @@ Segun yo deberia dar pero xd, capaz hice mal el codigo
 pero igual gracias a tu idea se me ocurrio esta otra, gracias uwu
 
 
-El que lea esto es gay...
+El jimenez es gay...
 */
 
 void solve(){
