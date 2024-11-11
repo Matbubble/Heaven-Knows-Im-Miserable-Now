@@ -33,18 +33,20 @@ void solve(){
     string s; cin>>s;
     int l=a-1, r=a, ans=0;
     while(1){
+        if(l<0) break;
         int currA=num(s[l]), currB=num(s[r]);
         if(currA==currB || ((currA+1)%3==currB)) r++;
         else l--;
-        if(l<0 || r>=a+b) break;
+        if(r>=a+b) break;
     }
-    ans+=l+1;
+    ans=l+1;
     l=a-1, r=a;
     while(1){
+        if(r>=a+b) break;
         int currA=num(s[l]), currB=num(s[r]);
         if(currA==currB || ((currB+1)%3==currA)) l--;
         else r++;
-        if(l<0 || r>=a+b) break;
+        if(l<0) break;
     }
     ans+=(a+b)-r;
     cout<<ans<<"\n";
