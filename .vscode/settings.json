@@ -9,6 +9,7 @@
         "ios": "cpp",
         "unordered_set": "cpp",
         "unordered_map": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "set": "cpp"
     }
 }
