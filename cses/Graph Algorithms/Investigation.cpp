@@ -35,10 +35,22 @@ void dfs(int u){
         dfs(v.first);
     }
     if(u==1){
+        // dbg(123)
         dis_ways[u]=1;
-        min_way[u]=1;
+        min_way[u]=0;
         max_way[u]=1;
+    }else{
+        for(pair<int, long long> v:g1[u]){
+            if(dis[v.first]+v.second==dis[u]){
+                dis_ways[u]*=dis_ways[v.first];
+                // dbg(v.first)
+                // dbg(min_way[v.first]);
+                min_way[u]=min(min_way[u], min_way[v.first]+1);
+                max_way[u]=max(max_way[u], max_way[v.first]+1);
+            }
+        }
     }
+
 
 }
 
@@ -46,6 +58,8 @@ void solve(){
     for(int i=1 ; i<=maxN ; i++){
         dis[i]=inf;
         dis_ways[i]=1;
+        min_way[i]=inf;
+
     }
     int n, m; cin>>n>>m;
     for(int i=0 ; i<n ; i++){
@@ -67,6 +81,8 @@ void solve(){
             }
         }
     }
+    dfs(n);
+    cout<<dis[n]<<" "<<dis_ways[n]<<" "<<min_way[n]<<" "<<max_way[n]<<"\n";
     
 }
 
