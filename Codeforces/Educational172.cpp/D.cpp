@@ -32,6 +32,8 @@ void solve(){
     sort(vp.begin(), vp.end(), [&](T a, T b) -> bool {
         return (a.first == b.first) ? a.second > b.second : a.first < b.first;
     });
+    pair<int, int>a={1, 1};
+    for(int i=0 ; i<n ; i++) cout<<vp[i].first<<" "<<vp[i].second<<"\n";
 }
 
 int main(){
