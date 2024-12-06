@@ -47,6 +47,7 @@ void solve(){
         if(it==S.end()) ans[i]+=0;
         else ans[i]+=-vp[i].first+(*it);
         S.insert(vp[i].first);
+        
     }
     for(long long x:ans) cout<<x<<"\n";
 }
