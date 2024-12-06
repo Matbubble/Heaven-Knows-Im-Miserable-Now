@@ -46,8 +46,9 @@ void solve(){
         auto it=S.lower_bound(vp[i].first);
         if(it==S.end()) ans[i]+=0;
         else ans[i]+=-vp[i].first+(*it);
+        //ojala
         S.insert(vp[i].first);
-        
+
     }
     for(long long x:ans) cout<<x<<"\n";
 }
