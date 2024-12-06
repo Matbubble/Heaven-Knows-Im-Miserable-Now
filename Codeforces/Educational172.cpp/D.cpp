@@ -22,35 +22,46 @@ using namespace std;
 Time waits for nobody
 */
 
+struct point{
+    long long x, y, z;
+};
+
 void solve(){
     long long n; cin>>n;
-    using T=pair<long long, long long>;
+    using T=point;
     vector<T>vp(n);
     vector<long long>ans(n);
-    for(T& x:vp) cin>>x.first>>x.second;
+    for(T& x:vp) cin>>x.x>>x.y;
+    for(int i=0 ; i<n ; i++) vp[i].z=i;
     sort(vp.begin(), vp.end(), [&](T a, T b) -> bool {
-        return (a.first == b.first) ? a.second>b.second : a.first<b.first;
+        return (a.x == b.x) ? a.y>b.y : a.x<b.x;
     });
     set<long long>S;
     for(int i=0 ; i<n ; i++){
-        auto it=S.lower_bound(vp[i].second);
+        auto it=S.lower_bound(vp[i].y);
         if(it==S.end()) ans[i]+=0;
-        else ans[i]+=(*it)-vp[i].second;
-        S.insert(vp[i].second);
+        else ans[vp[i].z]+=(*it)-vp[i].y;
+        S.insert(vp[i].y);
     }
-    S.clear();
-    sort(vp.begin(), vp.end(), [&](T a, T b) -> bool{
-        return (a.second==b.second) ? a.first>b.first : a.second<b.second;
+    sort(vp.begin(), vp.end(), [&](T a, T b) -> bool {
+        return (a.y == b.y) ? a.x<b.x : a.y>b.y;
     });
+    S.clear();
     for(int i=0 ; i<n ; i++){
-        auto it=S.lower_bound(vp[i].first);
-        if(it==S.end()) ans[i]+=0;
-        else ans[i]+=-vp[i].first+(*it);
+        // dbg(vp[i].x);
+        auto it=S.upper_bound(vp[i].x);
+        if(S.empty() || it==S.begin()) ans[i]+=0;
+        else{
+            it--;
+            // dbg(*it)
+            ans[vp[i].z]+=vp[i].x-(*it);
+        }
         //ojala
-        S.insert(vp[i].first);
+        S.insert(vp[i].x);
 
     }
     for(long long x:ans) cout<<x<<"\n";
+    // dbg("123123123")
 }
 
 int main(){
