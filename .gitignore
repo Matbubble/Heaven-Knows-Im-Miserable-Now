@@ -1,4 +1,5 @@
 *.exe
+*.
 *.txt
 *.bin
 *.jpg
@@ -9,4 +10,3 @@
 *.zip
 *.rar
 *.doc
-*.
