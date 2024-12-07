@@ -31,7 +31,11 @@ void solve(){
     using T=point;
     vector<T>vp(n);
     vector<long long>ans(n);
-    for(T& x:vp) cin>>x.x>>x.y;
+    map<pair<long long, long long>, long long>freq;
+    for(T& x:vp){
+        cin>>x.x>>x.y;
+        freq[{x.x, x.y}]++;
+    }
     for(int i=0 ; i<n ; i++) vp[i].z=i;
     sort(vp.begin(), vp.end(), [&](T a, T b) -> bool {
         return (a.x == b.x) ? a.y>b.y : a.x<b.x;
@@ -59,6 +63,9 @@ void solve(){
         //ojala
         S.insert(vp[i].x);
 
+    }
+    for(int i=0 ; i<n ; i++){
+        if(freq[{vp[i].x, vp[i].y}]>=2) ans[vp[i].z]=0;
     }
     for(long long x:ans) cout<<x<<"\n";
     // dbg("123123123")
