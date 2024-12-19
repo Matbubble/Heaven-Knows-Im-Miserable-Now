@@ -23,7 +23,8 @@ Shhhhh!
 */
 
 void solve(){
-    
+    int n; cin>>n;
+    cout<<n-1<<"\n";
 }
 
 int main(){

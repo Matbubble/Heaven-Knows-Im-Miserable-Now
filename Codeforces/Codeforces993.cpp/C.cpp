@@ -23,7 +23,17 @@ Shhhhh!
 */
 
 void solve(){
-    
+    long long m, a, b, c; cin>>m>>a>>b>>c;
+    long long ans=0;
+    long long one=m, two=m;
+    ans+=min(one, a);
+    one-=min(one, a);
+    ans+=min(one, c);
+    c-=min(one, c);
+    ans+=min(two, b);
+    two-=min(two, b);
+    ans+=min(two, c);
+    cout<<ans<<"\n";
 }
 
 int main(){

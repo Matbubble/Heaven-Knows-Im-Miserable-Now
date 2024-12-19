@@ -23,7 +23,22 @@ Shhhhh!
 */
 
 void solve(){
-    
+    long long k, l1, r1, l2, r2; cin>>k>>l1>>r1>>l2>>r2;
+    long long now=1, ans=0;
+    while(now<=1e9){
+        long long lower=max((l2+now-1)/now, l1);
+        long long upper=min((r2)/now, r1);
+        if(lower*now>r2 || upper*now<l2){
+            now*=k;
+            continue;
+        }
+        // dbg(now)
+        // dbg(upper)
+        // dbg(lower)
+        ans+=upper-lower+1;
+        now*=k;
+    }
+    cout<<ans<<"\n";
 }
 
 int main(){

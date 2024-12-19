@@ -23,7 +23,13 @@ Shhhhh!
 */
 
 void solve(){
-    
+    string s; cin>>s;
+    reverse(s.begin(), s.end());
+    for(char &ch:s){
+        if(ch=='p') ch='q';
+        else if(ch=='q') ch='p';
+    }
+    cout<<s<<"\n";
 }
 
 int main(){
