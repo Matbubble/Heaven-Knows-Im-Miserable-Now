@@ -9,3 +9,5 @@
 *.zip
 *.rar
 *.doc
+*.sh
+*.h
