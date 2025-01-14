@@ -25,36 +25,46 @@ Mon Laferte
 
 void solve(){
     string s; cin>>s;
-    map<deque<char>, bool>freq;
-    deque<char>a, b;
-    int l=0, r=(int)s.size()-1;
-    while(1){
-        a.push_back(s[l]);
-        b.push_front(s[r]);
-        if(r<=l) break;
-        l++;
-        r--;
-    }
-    if(l==(int)s.size()-1){
+    map<long long, bool> freq;
+    string a, b;
+    long long n=(long long)s.size(), mid=(long long)s.size()/2;
+    if(n<=2){
         cout<<"NO\n";
         return;
     }
-    freq[a]=1;
-    if(freq[b]==1){
+    long long l, r;
+    long long one=0ll, two=0ll;
+    long long p=2ll, p_powA=1ll, p_powB=1ll;
+    long long MOD=1e17;
+    l=mid;
+    for(long long i=0 ; i<=mid ; i++){
+        one=(one+(s[i]-'a'+1)*p_powA)%MOD;
+        p_powA=(p_powA*p)%MOD;
+    }
+    if(!(n&1)) mid--;
+    r=mid;
+    for(long long i=mid ; i<n ; i++){
+        two=(two+(s[i]-'a'+1)*p_powB)%MOD;
+        p_powB=(p_powB*p)%MOD;
+    }
+    freq[one]=1;
+    if(freq[two]==1){
         cout<<"YES\n";
-        for(char ch:b) cout<<ch;
+        for(long long i=mid ; i<n ; i++) cout<<s[i];
         cout<<"\n";
         return;
     }
-    freq.erase(a);
-    for(int i=l+1 ; i<(int)s.size()-1 ; i++){
-        freq.erase(a);
-        a.push_back(s[i]);
-        b.push_front(s[r-i+(l)]);
-        freq[a]=1;
-        if(freq[b]==1){
+    while(1){
+        r--;
+        l++;
+        if(r==0 || l==n-1) break;
+        one=(one+(long long)(s[l]-'a'+1ll)*p_powA)%MOD;
+        p_powA=(p_powA*p)%MOD;
+        two=((two*p)+(s[r]-'a'+1ll))%MOD;
+        freq[one]=1;
+        if(freq[two]==1){
             cout<<"YES\n";
-            for(char ch:b) cout<<ch;
+            for(long long i=r ; i<n ; i++) cout<<s[i];
             cout<<"\n";
             return;
         }

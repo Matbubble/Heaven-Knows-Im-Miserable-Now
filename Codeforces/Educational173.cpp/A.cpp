@@ -15,22 +15,29 @@
 #include <unordered_map>
 #include <unordered_set>
 
-// using namespace std;
+using namespace std;
 #define dbg(x) cerr<<#x<<": "<<x<<"\n";
 
 /*  
-Shhhhh!
+Vamos a amarla los dos
+Bronco
 */
 
 void solve(){
-    std::unordered_map<int, int>mp;
+    long long n; cin>>n;
+    long long ans=1;
+    while(n>3){
+        n/=4;
+        ans*=2;
+    }
+    cout<<ans<<"\n";
 }
 
 int main(){
-    // ios::sync_with_stdio(0);
-    // cin.tie(0);
-    // cout.tie(0);
-    // int t; cin>>t;
-    // while(t--) solve();
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    int t; cin>>t;
+    while(t--) solve();
     return 0;
 }
