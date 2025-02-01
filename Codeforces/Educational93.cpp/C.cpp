@@ -23,14 +23,27 @@ MC lover
 */
 
 void solve(){
-    
+    long long n; cin>>n;
+    string s; cin>>s;
+    vector<long long>pref;
+    pref.push_back(0);
+    for(char ch:s){
+        pref.push_back(pref.back()+(ch-'0'));
+    }
+    map<long long, long long>freq;
+    long long ans=0;
+    for(long long i=0 ; i<=n ; i++){
+        ans+=freq[pref[i]-i];
+        freq[pref[i]-i]++;
+    }
+    cout<<ans<<"\n";
 }
 
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    int t; cin>>t;
+    long long t; cin>>t;
     while(t--) solve();
     return 0;
 }

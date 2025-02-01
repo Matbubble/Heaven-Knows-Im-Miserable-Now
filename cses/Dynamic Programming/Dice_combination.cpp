@@ -21,16 +21,26 @@ using namespace std;
 /*  
 MC lover
 */
-
+const long long MOD=1e9+7;
 void solve(){
-    
+    long long n; cin>>n;
+    vector<long long>dp(n+1);
+    dp[0]=1;
+    for(long long i=1 ; i<=n ; i++){
+        for(long long j=1 ; j<=6 ; j++){
+            long long curr=i-j;
+            if(curr<0) continue;
+            dp[i]+=dp[i-j];
+        }
+        dp[i]%=MOD;
+    }
+    cout<<(dp[n]%MOD)<<"\n";
 }
 
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    int t; cin>>t;
-    while(t--) solve();
+    solve();
     return 0;
 }

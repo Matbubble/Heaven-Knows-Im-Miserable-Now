@@ -23,7 +23,19 @@ MC lover
 */
 
 void solve(){
-    
+    long long n; cin>>n;
+    vector<long long>v(n);
+    for(long long &x:v) cin>>x;
+    for(long long i=1 ; i<n ; i++){
+        long long aux=min(v[i-1], v[i]);
+        v[i-1]-=aux;
+        v[i]-=aux;
+        if(v[i]<v[i-1]){
+            cout<<"NO\n";
+            return;
+        }
+    }
+    cout<<"YES\n";
 }
 
 int main(){

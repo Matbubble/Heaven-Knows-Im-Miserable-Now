@@ -21,8 +21,16 @@ using namespace std;
 /*  
 MC lover
 */
+const int maxN=2e5;
+long long dp[maxN+1][2][1];
 
 void solve(){
+    int n, m; cin>>n>>m;
+    vector<long long>a(n), b(m);
+    for(long long &x:a) cin>>x;
+    for(long long &x:b) cin>>x;
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
     
 }
 

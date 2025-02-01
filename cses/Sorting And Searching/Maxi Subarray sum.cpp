@@ -23,14 +23,23 @@ MC lover
 */
 
 void solve(){
-    
+    int n; cin>>n;
+    long long mini=0, pref=0;
+    long long ans=0;
+    for(int i=0 ; i<n ; i++){
+        long long now; cin>>now;
+        if(i==0) ans=now;
+        mini=min(mini, pref);
+        pref+=now;
+        ans=max(ans, pref-mini);
+    }
+    cout<<ans<<"\n";
 }
 
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    int t; cin>>t;
-    while(t--) solve();
+    solve();
     return 0;
 }

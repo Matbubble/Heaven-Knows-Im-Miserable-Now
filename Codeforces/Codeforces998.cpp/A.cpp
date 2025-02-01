@@ -23,7 +23,18 @@ MC lover
 */
 
 void solve(){
-    
+    vector<int>v(4);
+    for(int &x:v) cin>>x;
+    int a=v[0]+v[1];
+    int b=v[2]-v[1];
+    int c=v[3]-v[2];
+    map<int, int>mp;
+    mp[a]++; mp[b]++; mp[c]++;
+    int ans=0;
+    for(auto it:mp){
+        ans=max(ans, it.second);
+    }
+    cout<<ans<<"\n";
 }
 
 int main(){

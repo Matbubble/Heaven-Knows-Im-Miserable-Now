@@ -24,43 +24,29 @@ Vuela muy alto
 
 void solve(){
     long long n, m, l; cin>>n>>m>>l;
-    vector<pair<long long, long long> >a, b;
-    for(long long i=0 ; i<n ; i++){
-        long long x, y; cin>>x>>y;
-        a.push_back(make_pair(x, y));
-    }
-    for(long long i=0 ; i<m ; i++){
-        long long x, y; cin>>x>>y;
-        b.push_back(make_pair(x, y));
-    }
-    long long jump=1, curr=0, ans=0;
-    /* 01000010 */ map<long long, long long> freq;
-    for(long long i=0 ; i<n ; i++){
-        for(long long j=curr ; j<m ; j++){
-            if(b[j].first>=a[i].first){
-                curr=j;
-                break;
-            }
-            freq[b[j].second]++;
+    using T=pair<long long, long long>;
+    vector<T>h(n), p(m);
+    for(T &x:h) cin>>x.first>>x.second;
+    for(T &x:p) cin>>x.first>>x.second;
+    sort(h.begin(), h.end(), [&](T a, T b){
+        return a.first<b.first;
+    });
+    sort(p.begin(), p.end(), [&](T a, T b){
+        return a.first>b.first;
+    });
+    priority_queue<long long>val;
+    long long ans=0, jump=1;
+    for(T x:h){
+        while(!p.empty() && p.back().first<=x.first){
+            val.push(p.back().second);
+            p.pop_back();
         }
-        long long need=a[i].second-a[i].first+2;
-        dbg(need)
-        while(jump<need){
-            auto it=prev(freq.end());
-            while(1){
-                if(it->second==0) it--;
-                if(it==prev(freq.begin())) break;
-            }
-            long long x=it->first, y=it->second;
-            // dbg(it->first)
-            jump+=x;
-            // dbg(freq[x])
-            // dbg(x)
+        while(!val.empty() && jump<=x.second-x.first+1){
+            jump+=val.top();
             ans++;
-            freq[x]--;
-            
+            val.pop();
         }
-        if(jump<need){
+        if(jump<=x.second-x.first+1){
             cout<<-1<<"\n";
             return;
         }

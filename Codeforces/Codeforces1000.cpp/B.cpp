@@ -23,7 +23,18 @@ MC lover
 */
 
 void solve(){
-    
+    long long n, l, r, uwu=0; cin>>n>>l>>r;
+    vector<long long>v(n);
+    for(long long &x:v) cin>>x;
+    vector<long long>a, b;
+    for(long long i=l-1 ; i<n ; i++) b.push_back(v[i]);
+    for(long long i=0 ; i<r ; i++) a.push_back(v[i]);
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+    long long left=0, right=0;
+    for(long long i=0 ; i<=r-l ; i++) left+=a[i];
+    for(long long i=0 ; i<=r-l ; i++) right+=b[i];
+    cout<<min(left, right)<<"\n";
 }
 
 int main(){

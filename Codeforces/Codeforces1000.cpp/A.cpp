@@ -23,7 +23,10 @@ MC lover
 */
 
 void solve(){
-    
+    long long a, b; cin>>a>>b;
+    long long aux=0;
+    if(a==b && b==1) aux=1;
+    cout<<b-a+aux<<"\n";
 }
 
 int main(){
