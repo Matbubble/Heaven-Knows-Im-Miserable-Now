@@ -34,26 +34,23 @@ void solve(){
         freq.push_back(freq.back()+(x==c));
     }
     for(auto it:mp){
+        if(it.first==c) continue;
         vector<int>max_subarray;
         max_subarray.push_back(1);
         for(int i=1 ; i<(int)it.second.size() ; i++){
-            dbg(it.second[i])
-            dbg(it.second[i-1])
-            max_subarray.push_back(freq[it.second[i]]-freq[it.second[i-1]-1]);
-            freq.push_back(1);
+            max_subarray.push_back(-(freq[it.second[i]]-freq[it.second[i-1]-1]));
+            max_subarray.push_back(1);
         }
         int mini=0, pref=0;
         int maxi=0;
         for(int x:max_subarray){
-            dbg(x)
             pref+=x;
             maxi=max(maxi, pref-mini);
             mini=min(mini, pref);
         }
-        dbg(maxi)
         ans=max(ans, maxi);
     }
-    cout<<ans<<"\n";
+    cout<<ans+freq[n]<<"\n";
 }
 
 int main(){

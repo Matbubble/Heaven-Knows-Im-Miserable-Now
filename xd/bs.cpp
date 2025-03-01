@@ -24,40 +24,51 @@ MC lover
 
 //Calcula la respuesta MODULO 1e9+7
 
-const long long MOD=1e9+7;
-vector<vector<int>>padres;
-vector<vector<int>>graph;
-int timer=0;
-vector<int>Tin, Tout;
-int n;
 
-void dfs(int v, int root){
-    Tin[v]=++timer;
-    padres[v][0]=root;
-    for(int i=1 ; i<=log(n) ; i++){
-        padres[v][i]=padres[padres[v][i-1]][i-1];
-    }
-    for(int u:graph[v]){
-        if(u==root) continue;
-        dfs(u, v); 
-    }
+const int maxN=1e5;
+int segtree[4*maxN];
+vector<int>v;
 
-    Tout[v]=++timer;
+void build(int l, int r, int root){
+    if(l==r){
+        segtree[root]=v[l];
+        return;
+    }
+    int mitad=(l+r)/2;
+    build(l, mitad, 2*root);
+    build(mitad+1, r, 2*root+1);
+    segtree[root]=min(segtree[2*root], segtree[2*root+1]);
 }
 
-bool is_ancestor(int a, int b){
-    return Tin[a]<=Tin[b] && Tout[a]>=Tout[b];
+int querie(int l, int r, int root, int ql, int qr){
+    if(l>qr || r<ql) return 1e9;
+    if(l>=ql && r<=qr) return segtree[root];
+    int mitad=(l+r)/2;
+    int a=querie(l, mitad, 2*root, ql, qr);
+    int b=querie(mitad+1, r, 2*root+1, ql, qr);
+    return min(a, b);
 }
 
+void update(int l, int r, int root, int posi, int val){
+    if(l==r){
+        segtree[root]=val;
+        v[l]=val;
+        return;
+    }
+    int mitad=(l+r)/2;
+    //[l, mitad] -- [mitad+1, r]
+    if(mitad>=posi) update(l, mitad, 2*root, posi, val);
+    else update(mitad+1, r, 2*root+1, posi, val);
+    segtree[root]=min(segtree[2*root], segtree[2*root+1]);
+}
 
 void solve(){
-    cin>>n;
-    for(int i=1 ; i<=n-1 ; i++){
-        int a, b; cin>>a>>b;
-        graph[a].push_back(b);
-        graph[b].push_back(a);
-    }
-    
+    int n; cin>>n;
+    v.resize(n);
+    for(int i=0 ; i<n ; i++) cin>>v[i];
+    build(0, n-1, 1);
+    update(0, n-1, 1, 3, 5);
+    cout<<querie(0, n-1, 1, 1, 5);
 
 }
 
