@@ -24,52 +24,48 @@ MC lover
 
 //Calcula la respuesta MODULO 1e9+7
 
-
-const int maxN=1e5;
-int segtree[4*maxN];
-vector<int>v;
-
-void build(int l, int r, int root){
-    if(l==r){
-        segtree[root]=v[l];
-        return;
+struct fentree{
+    int n;
+    vector<int>ft;
+    fentree(int n):n(n), ft(n+1){}
+    void add(int posi, int val){
+        while(posi<=n){
+            ft[posi]+=val;
+            posi+=posi&-posi;
+        }
     }
-    int mitad=(l+r)/2;
-    build(l, mitad, 2*root);
-    build(mitad+1, r, 2*root+1);
-    segtree[root]=min(segtree[2*root], segtree[2*root+1]);
-}
-
-int querie(int l, int r, int root, int ql, int qr){
-    if(l>qr || r<ql) return 1e9;
-    if(l>=ql && r<=qr) return segtree[root];
-    int mitad=(l+r)/2;
-    int a=querie(l, mitad, 2*root, ql, qr);
-    int b=querie(mitad+1, r, 2*root+1, ql, qr);
-    return min(a, b);
-}
-
-void update(int l, int r, int root, int posi, int val){
-    if(l==r){
-        segtree[root]=val;
-        v[l]=val;
-        return;
+    int querie(int posi){
+        int res=0;
+        while(posi>0){
+            res+=ft[posi];
+            posi-=posi&-posi;
+        }
+        return res;
     }
-    int mitad=(l+r)/2;
-    //[l, mitad] -- [mitad+1, r]
-    if(mitad>=posi) update(l, mitad, 2*root, posi, val);
-    else update(mitad+1, r, 2*root+1, posi, val);
-    segtree[root]=min(segtree[2*root], segtree[2*root+1]);
-}
+};
 
 void solve(){
-    int n; cin>>n;
-    v.resize(n);
-    for(int i=0 ; i<n ; i++) cin>>v[i];
-    build(0, n-1, 1);
-    update(0, n-1, 1, 3, 5);
-    cout<<querie(0, n-1, 1, 1, 5);
-
+    int n;
+    vector<int>v(n);
+    int maxi=0;
+    set<int>s;
+    for(int i=0 ; i<n ; i++){
+        cin>>v[i];
+        s.insert(v[i]);
+    }
+    map<int, int>mp;
+    int posi=1;
+    for(int x:s){
+        mp[x]=posi;
+        posi++;
+    }
+    fentree ft(s.size());
+    int ans=0;
+    for(int i=n-1 ; i>=0 ; i--){
+        ft.add(mp[v[i]], 1);
+        ans+=ft.querie(mp[v[i]-1]);
+    }
+    cout<<ans;
 }
 
 int main(){
