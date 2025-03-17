@@ -97,6 +97,7 @@ void solve(){
     long long n, q; cin>>n>>q;
     for(long long i=0 ; i<n ; i++) cin>>arr[i];
     build(1, 0, n-1);
+    
     while(q--){
         long long type, p, v; cin>>type>>p>>v;
         if(type==1){
