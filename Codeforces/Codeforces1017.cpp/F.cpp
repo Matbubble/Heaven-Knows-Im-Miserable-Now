@@ -55,16 +55,16 @@ void solve(){
             if(mat[xx][yy]==k+1) continue;
             s.insert(mat[xx][yy]);
         }
-        // int aux;
-        // for(pair<int, int>it:freq){
-        //     if(!s.count(it.first)){
-        //         mat[x][y]=it.first;
-        //         freq[it.first]--;
-        //         aux=it.first;
-        //         break;
-        //     }
-        // }
-        // if(freq[aux]==0) freq.erase(aux);
+        int aux;
+        for(pair<int, int>it:freq){
+            if(!s.count(it.first)){
+                mat[x][y]=it.first;
+                freq[it.first]--;
+                aux=it.first;
+                break;
+            }
+        }
+        if(freq[aux]==0) freq.erase(aux);
     }
     for(int i=0 ; i<n ; i++){
         for(int j=0 ; j<m ; j++) cout<<mat[i][i]<<" ";
