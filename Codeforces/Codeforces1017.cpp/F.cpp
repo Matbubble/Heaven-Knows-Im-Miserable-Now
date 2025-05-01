@@ -42,9 +42,10 @@ void solve(){
     bfs.push({0, 0});
     while(!bfs.empty()){
         auto[x, y]=bfs.front();
-        dbg(x)
-        dbg(y)
         bfs.pop();
+        if(mat[x][y]<=k) continue;
+        // dbg(x)
+        // dbg(y)
         set<int>s;
         for(int i=0 ; i<4 ; i++){
             int xx=x+dirX[i], yy=y+dirY[i];
@@ -52,12 +53,13 @@ void solve(){
             if(mat[xx][yy]==k+1){
                 bfs.push({xx, yy});
             }
-            if(mat[xx][yy]==k+1) continue;
+            // dbg(mat[xx][yy])
             s.insert(mat[xx][yy]);
         }
         int aux;
         for(pair<int, int>it:freq){
             if(!s.count(it.first)){
+                // dbg(it.first)
                 mat[x][y]=it.first;
                 freq[it.first]--;
                 aux=it.first;
@@ -65,9 +67,11 @@ void solve(){
             }
         }
         if(freq[aux]==0) freq.erase(aux);
+        // dbg(mat[x][y])
+        // dbg("----")
     }
     for(int i=0 ; i<n ; i++){
-        for(int j=0 ; j<m ; j++) cout<<mat[i][i]<<" ";
+        for(int j=0 ; j<m ; j++) cout<<mat[i][j]<<" ";
         cout<<"\n";
     }
 }
