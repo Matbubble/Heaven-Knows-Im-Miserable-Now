@@ -24,7 +24,18 @@ MC lover
 */
 
 void solve(){
-    
+    int n, x; cin>>n>>x;
+    int primero=-1, last=-1;
+    for(int i=0 ; i<n ; i++){
+        int x; cin>>x;
+        if(x==1){
+            if(primero==-1) primero=i;
+            last=i;
+        }
+    }
+    int cantidad=last-primero+1;
+    // dbg(cantidad)
+    cout<<(x>=cantidad?"YES\n":"NO\n");
 }
 
 int main(){

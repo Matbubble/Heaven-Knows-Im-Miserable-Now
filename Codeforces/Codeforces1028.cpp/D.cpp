@@ -19,22 +19,31 @@ using namespace std;
 #define dbg(x) cerr<<#x<<": "<<x<<"\n";
 
 /*  
-Chiquitita tell me the truth
+MC lover
 */
 
+struct point{
+    int x, y, z;
+};
+
 void solve(){
-    long long n, ans=0; cin>>n;
-    for(int i=1 ; i<n ; i++){
-        long long aux; cin>>aux;
-        ans+=aux;
+    int n, q; cin>>n>>q;
+    vector<int>v(n), b(n);
+    for(int &x:v) cin>>x;
+    vector<point>paso(q);
+    for(int i=0 ; i<q ; i++){
+        point temp; cin>>temp.x>>temp.y>>temp.z;
+        temp.x--; temp.y--; temp.z--;
+        paso[i]=temp;
+        
     }
-    cout<<(n*(n+1)/2)-ans;
 }
 
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-     solve();
+    int t; cin>>t;
+    while(t--) solve();
     return 0;
 }

@@ -19,32 +19,11 @@ using namespace std;
 #define dbg(x) cerr<<#x<<": "<<x<<"\n";
 
 /*  
-I love DP
+MC lover
 */
 
 void solve(){
-    long long n; cin>>n;
-    vector<long long>v(n);
-    for(long long &x:v) cin>>x;
-    long long xd=0;
-    long long l=-1, r=n, a=0, b=0, ans=0;
-    while(l<r){
-        if(a<b){
-            l++;
-            if(l==r) break;
-            xd++;
-            a+=v[l];
-        }else{
-            r--;
-            if(l==r) break;
-            xd++;
-            b+=v[r];
-        }
-        if(a==b){
-            ans=xd;
-        }
-    }
-    cout<<ans<<"\n";
+    
 }
 
 int main(){

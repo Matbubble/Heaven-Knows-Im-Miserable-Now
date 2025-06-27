@@ -1,3 +1,4 @@
+#include "portales.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -14,7 +15,6 @@
 #include <stack>
 #include <unordered_map>
 #include <unordered_set>
-#include <cassert>
 
 using namespace std;
 #define dbg(x) cerr<<#x<<": "<<x<<"\n";
@@ -23,15 +23,20 @@ using namespace std;
 MC lover
 */
 
-void solve(){
-    
-}
-
-int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-    int t; cin>>t;
-    while(t--) solve();
-    return 0;
+vector<int> portales_magicos(int N, vector<int> P) {
+  vector<int> result(N);
+  set<int>s;
+  for(int i=0 ; i<N ; i++){
+    if(s.empty()) result[i]=-1;
+    else{
+      auto it=s.lower_bound(P[i]);
+      if(it==s.begin()) result[i]=-1;
+      else{
+        it--;
+        result[i]=(*it);
+      }
+    }
+    s.insert(P[i]);
+  }
+  return result;
 }

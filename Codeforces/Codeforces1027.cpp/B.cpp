@@ -14,7 +14,6 @@
 #include <stack>
 #include <unordered_map>
 #include <unordered_set>
-#include <cassert>
 
 using namespace std;
 #define dbg(x) cerr<<#x<<": "<<x<<"\n";
@@ -24,7 +23,26 @@ MC lover
 */
 
 void solve(){
-    
+    int n, k; cin>>n>>k;
+    string s; cin>>s;
+    int a=0, b=0;
+    for(char ch:s){
+        a+=(ch=='1');
+        b+=(ch=='0');
+    }
+    int xd=min(a, b);
+    int xd1=max(a, b);
+    xd1-=xd;
+    k-=(xd1/2);
+    if(k<0){
+        cout<<"NO\n";
+        return;
+    }
+    if(k%2==1) cout<<"NO\n";
+    else{
+        if(k/2<=xd/2) cout<<"YES\n";
+        else cout<<"NO\n";
+    }
 }
 
 int main(){

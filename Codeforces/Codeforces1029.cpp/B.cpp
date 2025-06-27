@@ -14,36 +14,31 @@
 #include <stack>
 #include <unordered_map>
 #include <unordered_set>
+#include <cassert>
 
 using namespace std;
 #define dbg(x) cerr<<#x<<": "<<x<<"\n";
 
 /*  
-I love DP
+MC lover
 */
 
 void solve(){
-    string aux="vika";
-    int n, m; cin>>n>>m;
-    char lab[n][m];
-    for(int i=0 ; i<n ; i++){
-        for(int j=0 ; j<m ; j++) cin>>lab[i][j];
-    }
-    int now=0;
-    for(int i=0 ; i<m ; i++){
-        for(int j=0 ; j<n ; j++){
-            if(lab[j][i]==aux[now]){
-                now++;
-                break;
-            }
+    int n; cin>>n;
+    int l=0, r=n-1;
+    vector<int>ans(n);
+    int curr=0;
+    while(l<=r){
+        if(l==r) ans[l]=++curr;
+        else{
+            ans[l]=++curr;
+            ans[r]=++curr;
         }
-        // dbg(now)
-        if(now>=4){
-            cout<<"YES\n";
-            return;
-        }
+        l++;
+        r--;
     }
-    cout<<"NO\n";
+    for(int x:ans) cout<<x<<" ";
+    cout<<"\n";
 }
 
 int main(){

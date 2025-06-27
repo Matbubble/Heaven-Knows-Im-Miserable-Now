@@ -22,38 +22,40 @@ using namespace std;
 MC lover
 */
 
-const int maxN=2e5;
-vector<int> g[maxN+1];
-int dp[maxN+1][2];
+const int maxN=1e5;
+vector<int>g[maxN+1];
+int tin[maxN+1], tout[maxN+1], papi[maxN+1];
+bool vis[maxN+1];
+int timer=0, ans=0;
 
-void dfs(int u, int root){
-    bool leaf=1;
+void dfs(int u){
+    // vis[u]=1;
+    tin[u]=tout[u]=++timer;
     for(int v:g[u]){
-        if(v==root) continue;
-        leaf=0;
-        dfs(v, u);
-        dp[u][0]+=max(dp[v][0], dp[v][1]);
-    }
-    if(leaf){
-        dp[u][0]=dp[u][1]=0;
-        return;
-    }
-    for(int v:g[u]){
-        if(v==root) continue;
-        dp[u][1]=max(dp[u][1], 1+dp[u][0]-max(dp[v][0], dp[v][1])+dp[v][0]);
+        if(!vis[v]){
+            papi[v]=u;
+            vis[v]=1;
+            dfs(v);
+            tout[u]=min(tout[u], tout[v]);
+            if(tout[v]>tin[u]) ans++;
+        }else if(v!=papi[u]) tout[u]=min(tout[u], tin[v]);
     }
 }
 
 void solve(){
-    int n; cin>>n;
-    for(int i=1 ; i<n ; i++){
+    int n, m; cin>>n>>m;
+    for(int i=0 ; i<m ; i++){
         int a, b; cin>>a>>b;
         g[a].push_back(b);
         g[b].push_back(a);
     }
-    dfs(1, -1);
-    cout<<max(dp[1][0], dp[1][1])<<"\n";
-
+    for(int i=1 ; i<=n ; i++){
+        if(!vis[i]){
+            vis[i]=1;
+            dfs(i);
+        }
+    }
+    cout<<ans<<"\n";
 }
 
 int main(){

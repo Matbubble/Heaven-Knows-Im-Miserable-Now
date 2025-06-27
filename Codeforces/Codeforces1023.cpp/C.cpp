@@ -22,31 +22,28 @@ using namespace std;
 MC lover
 */
 
-//Calcula la respuesta MODULO 1e9+7
+struct point{
+    int l, r, val;
+};
 
 void solve(){
-    int n, m; cin>>n>>m;
-    vector<vector<int>>g(n+1);
-    vector<bool>vis(n+1, 0);
-    for(int i=0 ; i<m ; i++){
-        int a, b; cin>>a>>b;
-        g[a].push_back(b);
-        g[b].push_back(a);
+    int n; cin>>n;
+    vector<int>v(n), posi(31), xd(n);
+    for(int i=0 ; i<n ; i++){
+        cin>>v[i];
+        posi[v[i]]=i;
     }
-    queue<int>bfs;
-    bfs.push(0);
-    vis[0]=1;
-    while(!bfs.empty()){
-        int u=bfs.front();
-        vis[u]=1;
-        bfs.pop();
-        for(int v:g[u]){
-            if(vis[v]!=1){
-                bfs.push(v);
-            }
+    vector<point>vp;
+    for(int i=0 ; i<n ; i++){
+        // dbg(xd[i])
+        // dbg(v[i])
+        if(xd[i]!=v[i]){
+            vp.push_back({i+1, posi[v[i]]+1, v[i]});
+            for(int j=i ; j<=posi[v[i]] ; j++) xd[j]=v[i];
         }
     }
-    
+    cout<<(int)vp.size()<<"\n";
+    for(point x:vp) cout<<x.l<<" "<<x.r<<" "<<x.val<<"\n";
 }
 
 int main(){

@@ -24,7 +24,12 @@ MC lover
 */
 
 void solve(){
-    
+    int n, k; cin>>n>>k;
+    for(int i=0 ; i<n ; i++){
+        if(i<k) cout<<1;
+        else cout<<0;
+    }
+    cout<<"\n";
 }
 
 int main(){

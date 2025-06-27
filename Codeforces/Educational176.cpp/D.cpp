@@ -14,28 +14,38 @@
 #include <stack>
 #include <unordered_map>
 #include <unordered_set>
+#include <cassert>
 
 using namespace std;
 #define dbg(x) cerr<<#x<<": "<<x<<"\n";
 
 /*  
-Enamorado de dp uuu
+MC lover
 */
 
-void solve(){
-    int n; cin>>n;
-    vector<int> freq(101);
-    for(int i=0 ; i<n ; i++){
-        int aux; cin>>aux;
-        freq[aux]++;
+long long binpow(long long a, long long b){
+    long long res=1;
+    while(b>0){
+        if((b&1ll)){
+            res*=a;
+        }
+        a*=a;
+        b>>=1ll;
     }
-    for(int i=100 ; i>0 ; i--){
-        if(freq[i]>freq[i-1]){
-            cout<<"NO\n";
-            return;
+    return res;
+}
+
+void solve(){
+    long long x, y, ans=1e18; cin>>x>>y;
+    for(long long i=0 ; i<=60 ; i++){
+        for(long long j=0 ; j<=i ; j++){
+            long long a=binpow(2, j), b=binpow(2, i-j);
+            if(max(x, y)/max(a, b)==min(x, y)/min(a, b)){
+                
+            }
         }
     }
-    cout<<"YES\n";
+    cout<<ans<<"\n";
 }
 
 int main(){

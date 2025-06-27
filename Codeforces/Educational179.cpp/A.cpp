@@ -14,7 +14,6 @@
 #include <stack>
 #include <unordered_map>
 #include <unordered_set>
-#include <cassert>
 
 using namespace std;
 #define dbg(x) cerr<<#x<<": "<<x<<"\n";
@@ -24,7 +23,9 @@ MC lover
 */
 
 void solve(){
-    
+    int n; cin>>n;
+    int ll=32-__builtin_clz(n);
+    cout<<2*(ll)+1<<"\n";
 }
 
 int main(){

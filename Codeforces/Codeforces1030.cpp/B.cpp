@@ -23,8 +23,21 @@ using namespace std;
 MC lover
 */
 
+struct q{
+    int i, l, r;
+};
+
 void solve(){
-    
+    int n; cin>>n;
+    vector<q>ans;
+    ans.push_back({1, 1, n});
+    for(int i=2 ; i<=n ; i++){
+        // ans.push_back({i, 1, n});
+        ans.push_back({i, 1, n-i+1});
+        if(n-i+2<n) ans.push_back({i, n-i+2, n});
+    }
+    cout<<ans.size()<<"\n";
+    for(q it:ans) cout<<it.i<<" "<<it.l<<" "<<it.r<<"\n";
 }
 
 int main(){
